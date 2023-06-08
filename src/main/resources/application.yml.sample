@@ -1,0 +1,18 @@
+spring:
+  jpa:
+    database:
+    properties:
+      hibernate:
+        dialect:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+  datasource:
+    driverClassName:
+    url:
+    username:
+    password:
+
+server:
+  port:
