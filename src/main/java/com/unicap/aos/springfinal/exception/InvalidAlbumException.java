@@ -1,4 +1,4 @@
-package com.unicap.aos.springfinal.domain.dto;
+package com.unicap.aos.springfinal.exception;
 
 public class InvalidAlbumException extends RuntimeException {
     public InvalidAlbumException(String message) {

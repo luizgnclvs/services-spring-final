@@ -1,11 +1,9 @@
 package com.unicap.aos.springfinal.service;
 
-import com.unicap.aos.springfinal.domain.dto.AlbumCreateRequest;
-import com.unicap.aos.springfinal.domain.dto.AlbumResponse;
-import com.unicap.aos.springfinal.domain.dto.AlbumUpdateRequest;
-import com.unicap.aos.springfinal.domain.dto.InvalidAlbumException;
+import com.unicap.aos.springfinal.domain.dto.*;
 import com.unicap.aos.springfinal.domain.entity.Album;
 import com.unicap.aos.springfinal.exception.AlbumNotFoundException;
+import com.unicap.aos.springfinal.exception.InvalidAlbumException;
 import com.unicap.aos.springfinal.repository.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,5 +73,15 @@ public class AlbumService {
         Album updatedAlbum = repository.save(foundAlbum);
 
         return new AlbumResponse(updatedAlbum);
+    }
+
+    public DeletionResponse delete(long id) {
+        Optional<Album> searchedAlbum = repository.findById(id);
+        if (searchedAlbum.isEmpty()) throw new AlbumNotFoundException(id);
+
+        Album deletedAlbum = searchedAlbum.get();
+        repository.delete(deletedAlbum);
+
+        return new DeletionResponse("Álbum de ID: {{ " + id + " }} foi deletado com sucesso.");
     }
 }
