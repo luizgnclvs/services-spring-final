@@ -2,6 +2,7 @@ package com.unicap.aos.springfinal.service;
 
 import com.unicap.aos.springfinal.domain.dto.AlbumCreateRequest;
 import com.unicap.aos.springfinal.domain.dto.AlbumResponse;
+import com.unicap.aos.springfinal.domain.dto.AlbumUpdateRequest;
 import com.unicap.aos.springfinal.domain.dto.InvalidAlbumException;
 import com.unicap.aos.springfinal.domain.entity.Album;
 import com.unicap.aos.springfinal.exception.AlbumNotFoundException;
@@ -27,7 +28,6 @@ public class AlbumService {
 
     public AlbumResponse searchById(long id) {
         Optional<Album> searchedAlbum = repository.findById(id);
-
         if (searchedAlbum.isEmpty()) throw new AlbumNotFoundException(id);
 
         return new AlbumResponse(searchedAlbum.get());
@@ -48,5 +48,32 @@ public class AlbumService {
         Album createdAlbum = repository.save(newAlbum);
 
         return new AlbumResponse(createdAlbum);
+    }
+
+    public AlbumResponse update(long id, AlbumUpdateRequest request) {
+        if (request.getName().isBlank() &&
+            request.getArtist().isBlank() &&
+            request.getCoverURL().isBlank() &&
+            (Integer)request.getReleaseYear() == null) {
+            throw new InvalidAlbumException("Ao menos um dos campos deve ser preenchido.");
+        }
+
+        Optional<Album> searchedAlbum = repository.findById(id);
+        if (searchedAlbum.isEmpty()) throw new AlbumNotFoundException(id);
+
+        Album foundAlbum = searchedAlbum.get();
+
+        if (!request.getName().isBlank()) foundAlbum.setName(request.getName());
+        if (!request.getArtist().isBlank()) foundAlbum.setArtist(request.getArtist());
+        if (!request.getCoverURL().isBlank()) foundAlbum.setCoverURL(request.getCoverURL());
+        if (request.getReleaseYear() < 1950 || request.getReleaseYear() > LocalDate.now().getYear()) {
+            throw new InvalidAlbumException("Ano de lançamento deve estar entre 1955 e o ano atual.");
+        } else {
+            foundAlbum.setReleaseYear(request.getReleaseYear());
+        }
+
+        Album updatedAlbum = repository.save(foundAlbum);
+
+        return new AlbumResponse(updatedAlbum);
     }
 }
