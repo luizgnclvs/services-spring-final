@@ -16,16 +16,16 @@ import java.util.stream.Collectors;
 @Service
 public class AlbumService {
     @Autowired
-    private AlbumRepository repository;
+    private AlbumRepository albumRepository;
 
     public List<AlbumResponse> listAll() {
-        List<Album> albums = repository.findAll();
+        List<Album> albums = albumRepository.findAll();
 
         return albums.stream().map(album -> new AlbumResponse(album)).collect(Collectors.toList());
     }
 
     public AlbumResponse searchById(long id) {
-        Optional<Album> searchedAlbum = repository.findById(id);
+        Optional<Album> searchedAlbum = albumRepository.findById(id);
         if (searchedAlbum.isEmpty()) throw new AlbumNotFoundException(id);
 
         return new AlbumResponse(searchedAlbum.get());
@@ -43,7 +43,7 @@ public class AlbumService {
         newAlbum.setCoverURL(request.getCoverURL());
         newAlbum.setReleaseYear(request.getReleaseYear());
 
-        Album createdAlbum = repository.save(newAlbum);
+        Album createdAlbum = albumRepository.save(newAlbum);
 
         return new AlbumResponse(createdAlbum);
     }
@@ -56,7 +56,7 @@ public class AlbumService {
             throw new InvalidAlbumException("Ao menos um dos campos deve ser preenchido.");
         }
 
-        Optional<Album> searchedAlbum = repository.findById(id);
+        Optional<Album> searchedAlbum = albumRepository.findById(id);
         if (searchedAlbum.isEmpty()) throw new AlbumNotFoundException(id);
 
         Album foundAlbum = searchedAlbum.get();
@@ -70,17 +70,17 @@ public class AlbumService {
             foundAlbum.setReleaseYear(request.getReleaseYear());
         }
 
-        Album updatedAlbum = repository.save(foundAlbum);
+        Album updatedAlbum = albumRepository.save(foundAlbum);
 
         return new AlbumResponse(updatedAlbum);
     }
 
     public DeletionResponse delete(long id) {
-        Optional<Album> searchedAlbum = repository.findById(id);
+        Optional<Album> searchedAlbum = albumRepository.findById(id);
         if (searchedAlbum.isEmpty()) throw new AlbumNotFoundException(id);
 
         Album deletedAlbum = searchedAlbum.get();
-        repository.delete(deletedAlbum);
+        albumRepository.delete(deletedAlbum);
 
         return new DeletionResponse("Álbum de ID: {{ " + id + " }} foi deletado com sucesso.");
     }
