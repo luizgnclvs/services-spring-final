@@ -1,0 +1,2545 @@
+{
+	"info": {
+		"_postman_id": "dc1f4209-6ff8-4217-ac1c-785c2ab6216a",
+		"name": "AOS Spring Boot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20894865"
+	},
+	"item": [
+		{
+			"name": "Album",
+			"item": [
+				{
+					"name": "Create Album",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);\r",
+									"pm.globals.set(\"albumId\", data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"The Altar\",\r\n    \"artist\": \"Banks\",\r\n    \"cover_url\": \"https://parsefiles.back4app.com/emImppLbrG6yG2NH334Cx898GVcFTY4R6jW3x3Lj/008690e8c42ca3db18e6701d41aeb9a3_the_altar.jpg\",\r\n    \"release_year\": 2016\r\n}"
+						},
+						"url": {
+							"raw": "{{aos-spring}}/api/album",
+							"host": [
+								"{{aos-spring}}"
+							],
+							"path": [
+								"api",
+								"album"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"The Altar\",\r\n    \"artist\": \"Banks\",\r\n    \"cover_url\": \"https://parsefiles.back4app.com/emImppLbrG6yG2NH334Cx898GVcFTY4R6jW3x3Lj/008690e8c42ca3db18e6701d41aeb9a3_the_altar.jpg\",\r\n    \"release_year\": 2016\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/album",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"album"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 18:16:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"The Altar\",\n    \"artist\": \"Banks\",\n    \"cover_url\": \"https://parsefiles.back4app.com/emImppLbrG6yG2NH334Cx898GVcFTY4R6jW3x3Lj/008690e8c42ca3db18e6701d41aeb9a3_the_altar.jpg\",\n    \"release_year\": 2016\n}"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"The Altar\",\r\n    \"cover_url\": \"https://parsefiles.back4app.com/emImppLbrG6yG2NH334Cx898GVcFTY4R6jW3x3Lj/008690e8c42ca3db18e6701d41aeb9a3_the_altar.jpg\",\r\n    \"release_year\": 2016\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/album",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"album"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "77"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 18:29:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "Erro de validação: [artist não deve estar em branco]"
+						}
+					]
+				},
+				{
+					"name": "Update Album",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"artist\": \"BANKS\"\r\n}"
+						},
+						"url": {
+							"raw": "{{aos-spring}}/api/album/{{albumId}}",
+							"host": [
+								"{{aos-spring}}"
+							],
+							"path": [
+								"api",
+								"album",
+								"{{albumId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"artist\": \"BANKS\"\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/album/1",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"album",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 18:20:04 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"The Altar\",\n    \"artist\": \"BANKS\",\n    \"cover_url\": \"https://parsefiles.back4app.com/emImppLbrG6yG2NH334Cx898GVcFTY4R6jW3x3Lj/008690e8c42ca3db18e6701d41aeb9a3_the_altar.jpg\",\n    \"release_year\": 2016\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"artist\": \"BANKS\"\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/album/35",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"album",
+										"35"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 18:20:27 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Álbum de ID: {{ 35 }} não foi encontrado(a)."
+						},
+						{
+							"name": "Empty Body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/album/1",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"album",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 18:23:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "Ao menos um dos campos deve ser preenchido."
+						},
+						{
+							"name": "Year Validation Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"release_year\": 2024\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/album/1",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"album",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 18:25:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "Ano de lançamento deve estar entre 1955 e o ano atual."
+						}
+					]
+				},
+				{
+					"name": "Fetch Album",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{aos-spring}}/api/album/{{albumId}}",
+							"host": [
+								"{{aos-spring}}"
+							],
+							"path": [
+								"api",
+								"album",
+								"{{albumId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/album/1",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"album",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 18:17:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"The Altar\",\n    \"artist\": \"Banks\",\n    \"cover_url\": \"https://parsefiles.back4app.com/emImppLbrG6yG2NH334Cx898GVcFTY4R6jW3x3Lj/008690e8c42ca3db18e6701d41aeb9a3_the_altar.jpg\",\n    \"release_year\": 2016\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/album/35",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"album",
+										"35"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 18:17:50 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Álbum de ID: {{ 35 }} não foi encontrado(a)."
+						}
+					]
+				},
+				{
+					"name": "Fecth All Albums",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{aos-spring}}/api/album",
+							"host": [
+								"{{aos-spring}}"
+							],
+							"path": [
+								"api",
+								"album"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/album",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"album"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 21:11:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"The Altar\",\n        \"artist\": \"Banks\",\n        \"cover_url\": \"https://parsefiles.back4app.com/emImppLbrG6yG2NH334Cx898GVcFTY4R6jW3x3Lj/008690e8c42ca3db18e6701d41aeb9a3_the_altar.jpg\",\n        \"release_year\": 2016\n    },\n    {\n        \"id\": 2,\n        \"name\": \"III\",\n        \"artist\": \"Banks\",\n        \"cover_url\": \"https://parsefiles.back4app.com/emImppLbrG6yG2NH334Cx898GVcFTY4R6jW3x3Lj/93130bcd30300d8bd6d9eec00a39a1b9_iii.jfif\",\n        \"release_year\": 2019\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Goddess\",\n        \"artist\": \"Banks\",\n        \"cover_url\": \"https://parsefiles.back4app.com/emImppLbrG6yG2NH334Cx898GVcFTY4R6jW3x3Lj/5b71f21b8cb2e6bcb50ae1dc699fb962_goddess.jfif\",\n        \"release_year\": 2014\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Serpentina\",\n        \"artist\": \"Banks\",\n        \"cover_url\": \"https://parsefiles.back4app.com/emImppLbrG6yG2NH334Cx898GVcFTY4R6jW3x3Lj/76fcaa10717bb972f2ddf89dba149021_serpentina.jfif\",\n        \"release_year\": 2014\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete Album",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{aos-spring}}/api/album/{{albumId}}",
+							"host": [
+								"{{aos-spring}}"
+							],
+							"path": [
+								"api",
+								"album",
+								"{{albumId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/album/1",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"album",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:10:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/album/35",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"album",
+										"35"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 19:28:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Álbum de ID: {{ 35 }} não foi encontrado(a)."
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Song",
+			"item": [
+				{
+					"name": "Create Song",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);\r",
+									"pm.globals.set(\"songId\", data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Gemini Feed\",\r\n    \"duration\": 186,\r\n    \"album_id\": {{albumId}}\r\n}"
+						},
+						"url": {
+							"raw": "{{aos-spring}}/api/song",
+							"host": [
+								"{{aos-spring}}"
+							],
+							"path": [
+								"api",
+								"song"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Gemini Feed\",\r\n    \"duration\": 186,\r\n    \"album_id\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/song",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"song"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:15:09 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Gemini Feed\",\n    \"duration\": 186,\n    \"album_id\": 1\n}"
+						},
+						{
+							"name": "Album Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Gemini Feed\",\r\n    \"duration\": 186,\r\n    \"album_id\": 35\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/song",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"song"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:22:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Álbum de ID: {{ 35 }} não foi encontrado(a)."
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"duration\": 186,\r\n    \"album_id\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/song",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"song"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:22:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "Erro de validação: [name não deve estar em branco]"
+						}
+					]
+				},
+				{
+					"name": "Update Song",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"GEMINI FEED\"\r\n}"
+						},
+						"url": {
+							"raw": "{{aos-spring}}/api/song/{{songId}}",
+							"host": [
+								"{{aos-spring}}"
+							],
+							"path": [
+								"api",
+								"song",
+								"{{songId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"GEMINI FEED\"\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/song/1",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"song",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:16:33 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"GEMINI FEED\",\n    \"duration\": 186,\n    \"album_id\": 1\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"GEMINI FEED\"\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/song/35",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"song",
+										"35"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:16:52 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Música de ID: {{ 35 }} não foi encontrado(a)."
+						},
+						{
+							"name": "Empty Body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/song/1",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"song",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:17:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "Ao menos um dos campos deve ser preenchido."
+						}
+					]
+				},
+				{
+					"name": "Fetch Song",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{aos-spring}}/api/song/{{songId}}",
+							"host": [
+								"{{aos-spring}}"
+							],
+							"path": [
+								"api",
+								"song",
+								"{{songId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/song/1",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"song",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:15:24 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Gemini Feed\",\n    \"duration\": 186,\n    \"album_id\": 1\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/song/35",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"song",
+										"35"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:15:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Música de ID: {{ 35 }} não foi encontrado(a)."
+						}
+					]
+				},
+				{
+					"name": "Fecth All Songs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{aos-spring}}/api/song",
+							"host": [
+								"{{aos-spring}}"
+							],
+							"path": [
+								"api",
+								"song"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/song",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"song"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 21:19:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Gemini Feed\",\n        \"duration\": 186,\n        \"album_id\": 1\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Trainwreck\",\n        \"duration\": 221,\n        \"album_id\": 1\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete Song",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{aos-spring}}/api/song/{{songId}}",
+							"host": [
+								"{{aos-spring}}"
+							],
+							"path": [
+								"api",
+								"song",
+								"{{songId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/song/1",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"song",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:20:58 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/song/35",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"song",
+										"35"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:21:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Música de ID: {{ 35 }} não foi encontrado(a)."
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Rating",
+			"item": [
+				{
+					"name": "Create",
+					"item": [
+						{
+							"name": "Album Rating",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = JSON.parse(responseBody);\r",
+											"pm.globals.set(\"ratingId\", data.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"score\": \"10\",\r\n    \"commentary\": \"I love this album\",\r\n    \"album_id\": {{albumId}},\r\n    \"date\": \"2023-06-02\"\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/rating",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"rating"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"score\": \"10\",\r\n    \"commentary\": \"I love this album\",\r\n    \"album_id\": {{albumId}},\r\n    \"date\": \"2023-06-02\"\r\n}"
+										},
+										"url": {
+											"raw": "{{aos-spring}}/api/rating",
+											"host": [
+												"{{aos-spring}}"
+											],
+											"path": [
+												"api",
+												"rating"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 10 Jun 2023 19:24:50 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"score\": 10,\n    \"commentary\": \"I love this album\",\n    \"date\": \"2023-06-02\",\n    \"album_id\": 1,\n    \"song_id\": null\n}"
+								},
+								{
+									"name": "Album Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"score\": \"10\",\r\n    \"commentary\": \"I love this album\",\r\n    \"album_id\": 35,\r\n    \"date\": \"2023-06-02\"\r\n}"
+										},
+										"url": {
+											"raw": "{{aos-spring}}/api/rating",
+											"host": [
+												"{{aos-spring}}"
+											],
+											"path": [
+												"api",
+												"rating"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain;charset=UTF-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "46"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 10 Jun 2023 19:36:48 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "Álbum de ID: {{ 35 }} não foi encontrado(a)."
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"score\": \"10\",\r\n    \"commentary\": \"I love this album\",\r\n    \"album_id\": {{albumId}}\r\n}"
+										},
+										"url": {
+											"raw": "{{aos-spring}}/api/rating",
+											"host": [
+												"{{aos-spring}}"
+											],
+											"path": [
+												"api",
+												"rating"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain;charset=UTF-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "46"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 10 Jun 2023 19:37:20 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "Erro de validação: [date não deve ser nulo]"
+								}
+							]
+						},
+						{
+							"name": "Create Song Rating",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = JSON.parse(responseBody);\r",
+											"pm.globals.set(\"ratingId\", data.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"score\": \"10\",\r\n    \"commentary\": \"I love this song\",\r\n    \"song_id\": {{songId}},\r\n    \"date\": \"2023-05-31\"\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/rating",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"rating"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"score\": \"10\",\r\n    \"commentary\": \"I love this song\",\r\n    \"song_id\": {{songId}},\r\n    \"date\": \"2023-05-31\"\r\n}"
+										},
+										"url": {
+											"raw": "{{aos-spring}}/api/rating",
+											"host": [
+												"{{aos-spring}}"
+											],
+											"path": [
+												"api",
+												"rating"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 10 Jun 2023 19:38:36 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 2,\n    \"score\": 10,\n    \"commentary\": \"I love this song\",\n    \"date\": \"2023-05-31\",\n    \"album_id\": null,\n    \"song_id\": 1\n}"
+								},
+								{
+									"name": "Song Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"score\": \"10\",\r\n    \"commentary\": \"I love this song\",\r\n    \"song_id\": 5,\r\n    \"date\": \"2023-05-31\"\r\n}"
+										},
+										"url": {
+											"raw": "{{aos-spring}}/api/rating",
+											"host": [
+												"{{aos-spring}}"
+											],
+											"path": [
+												"api",
+												"rating"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain;charset=UTF-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "46"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 10 Jun 2023 19:38:57 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "Música de ID: {{ 5 }} não foi encontrado(a)."
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"commentary\": \"I love this song\",\r\n    \"song_id\": {{songId}},\r\n    \"date\": \"2023-05-31\"\r\n}"
+										},
+										"url": {
+											"raw": "{{aos-spring}}/api/rating",
+											"host": [
+												"{{aos-spring}}"
+											],
+											"path": [
+												"api",
+												"rating"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain;charset=UTF-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "61"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 10 Jun 2023 19:39:30 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "Erro de validação: [score deve ser maior que ou igual à 1]"
+								}
+							]
+						},
+						{
+							"name": "400 Album & Song",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"score\": \"10\",\r\n    \"commentary\": \"I love this album\",\r\n    \"date\": \"2023-06-05\",\r\n    \"album_id\": 1,\r\n    \"song_id\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/rating",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"rating"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"score\": \"10\",\r\n    \"commentary\": \"I love this album\",\r\n    \"date\": \"2023-06-05\",\r\n    \"album_id\": 1,\r\n    \"song_id\": 1\r\n}"
+										},
+										"url": {
+											"raw": "{{aos-spring}}/api/rating",
+											"host": [
+												"{{aos-spring}}"
+											],
+											"path": [
+												"api",
+												"rating"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain;charset=UTF-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "82"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 10 Jun 2023 19:35:36 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "Avaliação deve possuir um 'album_id' ou 'song_id' e nunca ambos simultaneamente."
+								},
+								{
+									"name": "400",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"score\": \"10\",\r\n    \"commentary\": \"I love this album\",\r\n    \"date\": \"2023-06-05\"\r\n}"
+										},
+										"url": {
+											"raw": "{{aos-spring}}/api/rating",
+											"host": [
+												"{{aos-spring}}"
+											],
+											"path": [
+												"api",
+												"rating"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain;charset=UTF-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "82"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 10 Jun 2023 19:38:08 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "Avaliação deve possuir um 'album_id' ou 'song_id' e nunca ambos simultaneamente."
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Update Rating",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"commentary\": \"I love it!!!\"\r\n}"
+						},
+						"url": {
+							"raw": "{{aos-spring}}/api/rating/{{ratingId}}",
+							"host": [
+								"{{aos-spring}}"
+							],
+							"path": [
+								"api",
+								"rating",
+								"{{ratingId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"commentary\": \"I love it!!!\"\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/rating/1",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"rating",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:30:06 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"score\": 10,\n    \"commentary\": \"I love it!!!\",\n    \"date\": \"2023-06-02\",\n    \"album_id\": 1,\n    \"song_id\": null\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"commentary\": \"I love it!!!\"\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/rating/35",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"rating",
+										"35"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:30:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Avaliação de ID: {{ 35 }} não foi encontrado(a)."
+						},
+						{
+							"name": "Empty Body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/rating/1",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"rating",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:29:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "Ao menos um dos campos deve ser preenchido."
+						},
+						{
+							"name": "Date Validation Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2024-11-11\"\r\n}"
+								},
+								"url": {
+									"raw": "{{aos-spring}}/api/rating/1",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"rating",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:32:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "Data da avaliação não pode ser anterior à 12 de Nov. de 1955 ou posterior ao dia atual."
+						}
+					]
+				},
+				{
+					"name": "Fetch Rating",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{aos-spring}}/api/rating/{{ratingId}}",
+							"host": [
+								"{{aos-spring}}"
+							],
+							"path": [
+								"api",
+								"rating",
+								"{{ratingId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Fetch Rating",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/rating/1",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"rating",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:28:04 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"score\": 10,\n    \"commentary\": \"I love this album\",\n    \"date\": \"2023-06-02\",\n    \"album_id\": 1,\n    \"song_id\": null\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/rating/35",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"rating",
+										"35"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:28:32 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Avaliação de ID: {{ 35 }} não foi encontrado(a)."
+						}
+					]
+				},
+				{
+					"name": "Fecth All Ratings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{aos-spring}}/api/rating",
+							"host": [
+								"{{aos-spring}}"
+							],
+							"path": [
+								"api",
+								"rating"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/rating",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"rating"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 21:19:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"score\": 10,\n        \"commentary\": \"I love this album\",\n        \"date\": \"2023-06-10\",\n        \"album_id\": 1,\n        \"song_id\": null\n    },\n    {\n        \"id\": 2,\n        \"score\": 10,\n        \"commentary\": \"I love this song\",\n        \"date\": \"2023-06-10\",\n        \"album_id\": null,\n        \"song_id\": 1\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete Rating",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{aos-spring}}/api/rating/{{ratingId}}",
+							"host": [
+								"{{aos-spring}}"
+							],
+							"path": [
+								"api",
+								"rating",
+								"{{ratingId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/rating/1",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"rating",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:32:55 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{aos-spring}}/api/rating/35",
+									"host": [
+										"{{aos-spring}}"
+									],
+									"path": [
+										"api",
+										"rating",
+										"35"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 19:33:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Avaliação de ID: {{ 35 }} não foi encontrado(a)."
+						}
+					]
+				}
+			]
+		}
+	]
+}
