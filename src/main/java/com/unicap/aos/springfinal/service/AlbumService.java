@@ -38,9 +38,9 @@ public class AlbumService {
 
         Album newAlbum = new Album();
 
-        newAlbum.setName(request.getName());
-        newAlbum.setArtist(request.getArtist());
-        newAlbum.setCoverURL(request.getCoverURL());
+        newAlbum.setName(request.getName().trim());
+        newAlbum.setArtist(request.getArtist().trim());
+        newAlbum.setCoverURL(request.getCoverURL().trim());
         newAlbum.setReleaseYear(request.getReleaseYear());
 
         Album createdAlbum = albumRepository.save(newAlbum);
@@ -49,23 +49,22 @@ public class AlbumService {
     }
 
     public AlbumResponse update(long id, AlbumUpdateRequest request) {
-        if (request.getName().isBlank() &&
-            request.getArtist().isBlank() &&
-            request.getCoverURL().isBlank() &&
-            (Integer)request.getReleaseYear() == null) {
-            throw new InvalidAlbumException("Ao menos um dos campos deve ser preenchido.");
-        }
+        if (!isUpdateFilled(request)) throw new InvalidAlbumException("Ao menos um dos campos deve ser preenchido.");
 
         Optional<Album> searchedAlbum = albumRepository.findById(id);
         if (searchedAlbum.isEmpty()) throw new AlbumNotFoundException(id);
 
         Album foundAlbum = searchedAlbum.get();
 
-        if (!request.getName().isBlank()) foundAlbum.setName(request.getName());
-        if (!request.getArtist().isBlank()) foundAlbum.setArtist(request.getArtist());
-        if (!request.getCoverURL().isBlank()) foundAlbum.setCoverURL(request.getCoverURL());
-        if (request.getReleaseYear() < 1950 || request.getReleaseYear() > LocalDate.now().getYear()) {
-            throw new InvalidAlbumException("Ano de lançamento deve estar entre 1955 e o ano atual.");
+        if (request.getName() != null)
+            if (!request.getName().isBlank()) foundAlbum.setName(request.getName().trim());
+        if (request.getArtist() != null)
+            if (!request.getArtist().isBlank()) foundAlbum.setArtist(request.getArtist().trim());
+        if (request.getCoverURL() != null)
+            if (!request.getCoverURL().isBlank()) foundAlbum.setCoverURL(request.getCoverURL().trim());
+        if (request.getReleaseYear() < 1955 || request.getReleaseYear() > LocalDate.now().getYear()) {
+            if (request.getReleaseYear() != 0)
+                throw new InvalidAlbumException("Ano de lançamento deve estar entre 1955 e o ano atual.");
         } else {
             foundAlbum.setReleaseYear(request.getReleaseYear());
         }
@@ -80,5 +79,20 @@ public class AlbumService {
         if (searchedAlbum.isEmpty()) throw new AlbumNotFoundException(id);
 
         albumRepository.delete(searchedAlbum.get());
+    }
+
+    private boolean isUpdateFilled(AlbumUpdateRequest request) {
+        if (request.getName() != null)
+            if (!request.getName().isBlank()) return true;
+
+        if (request.getArtist() != null)
+            if (!request.getArtist().isBlank()) return true;
+
+        if (request.getCoverURL() != null)
+            if (!request.getCoverURL().isBlank()) return true;
+
+        if (request.getReleaseYear() != 0) return true;
+
+        return false;
     }
 }
