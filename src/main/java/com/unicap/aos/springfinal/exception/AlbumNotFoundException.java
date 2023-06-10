@@ -1,11 +1,9 @@
 package com.unicap.aos.springfinal.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import com.unicap.aos.springfinal.exception.model.NotFoundException;
 
-@ResponseStatus(code = HttpStatus.NOT_FOUND)
-public class AlbumNotFoundException extends RuntimeException {
+public class AlbumNotFoundException extends NotFoundException {
     public AlbumNotFoundException(long id) {
-        super("Álbum de ID: {{ " + id + " }} não foi encontrado.");
+        super("Álbum", id);
     }
 }

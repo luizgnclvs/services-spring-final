@@ -1,6 +1,8 @@
 package com.unicap.aos.springfinal.exception;
 
-public class InvalidAlbumException extends RuntimeException {
+import com.unicap.aos.springfinal.exception.model.InvalidRequestException;
+
+public class InvalidAlbumException extends InvalidRequestException {
     public InvalidAlbumException(String message) {
         super(message);
     }
