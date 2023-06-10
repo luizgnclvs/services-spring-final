@@ -75,13 +75,10 @@ public class AlbumService {
         return new AlbumResponse(updatedAlbum);
     }
 
-    public DeletionResponse delete(long id) {
+    public void delete(long id) {
         Optional<Album> searchedAlbum = albumRepository.findById(id);
         if (searchedAlbum.isEmpty()) throw new AlbumNotFoundException(id);
 
-        Album deletedAlbum = searchedAlbum.get();
-        albumRepository.delete(deletedAlbum);
-
-        return new DeletionResponse("Álbum de ID: {{ " + id + " }} foi deletado com sucesso.");
+        albumRepository.delete(searchedAlbum.get());
     }
 }
