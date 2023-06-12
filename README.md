@@ -10,6 +10,8 @@ Projeto final da cadeira de Aplicações Orientadas a Serviços ofertada pela UN
 - Spring Boot **2.7.12**
 - Maven **3.8.7**
 
+É preciso também definir as seguintes variáveis locais: DB_URL, DB_USER e DB_PASS para conectar ao banco de dados.
+
 ### Lombok
 
 Nosso projeto utiliza a lib do *Project Lombok* e portanto é necessário configurá-lo de antemão.
